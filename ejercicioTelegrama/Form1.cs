@@ -16,5 +16,57 @@ namespace ejercicioTelegrama
         {
             InitializeComponent();
         }
+
+        private void btnCalcularPrecio_Click(object sender, EventArgs e)
+        {
+            string textoTelegrama; // JCBP2425
+            char tipoTelegrama = ' '; // JCBP2425
+            int numPalabras = 0; // JCBP2425
+            double coste; // JCBP2425
+
+            //Leo el telegrama // JCBP2425
+            textoTelegrama = txtTelegrama.Text;
+            // telegrama urgente? // JCBP2425
+            if (chkUrgente.Checked)
+            {
+
+                tipoTelegrama = 'u';
+            }
+            //Obtengo el número de palabras que forma el telegrama // JCBP2425
+            numPalabras = textoTelegrama.Length;
+
+            //Si el telegrama es ordinario // JCBP2425
+            if (tipoTelegrama == 'o')
+            {
+                if (numPalabras <= 10)
+                {
+                    coste = 2.5;
+                }
+                else
+                {
+                    coste = 0.5 * numPalabras;
+                }
+            }
+            else
+            //Si el telegrama es urgente // JCBP2425
+            {
+                if (tipoTelegrama == 'u')
+                {
+                    if (numPalabras <= 10)
+                    {
+                        coste = 5;
+                    }
+                    else
+                    {
+                        coste = 5 + 0.75 * (numPalabras - 10);
+                    }
+                }
+                else
+                {
+                    coste = 0;
+                }
+            }
+            txtPrecio.Text = coste.ToString() + " euros";
+        }
     }
 }
