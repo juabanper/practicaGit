@@ -20,12 +20,15 @@ namespace ejercicioTelegrama
         private void btnCalcularPrecio_Click(object sender, EventArgs e)
         {
             string textoTelegrama; // JCBP2425
-            char tipoTelegrama = ' '; // JCBP2425
+            char tipoTelegrama = 'o'; // JCBP2425
             int numPalabras = 0; // JCBP2425
             double coste; // JCBP2425
 
             //Leo el telegrama // JCBP2425
             textoTelegrama = txtTelegrama.Text;
+
+            string[] palabras = textoTelegrama.Split(' '); // Separa las palabras y las introduce en una estructura - JJBP2425
+
             // telegrama urgente? // JCBP2425
             if (chkUrgente.Checked)
             {
@@ -33,7 +36,7 @@ namespace ejercicioTelegrama
                 tipoTelegrama = 'u';
             }
             //Obtengo el número de palabras que forma el telegrama // JCBP2425
-            numPalabras = textoTelegrama.Length;
+            numPalabras = palabras.Length; // 
 
             //Si el telegrama es ordinario // JCBP2425
             if (tipoTelegrama == 'o')
@@ -44,7 +47,7 @@ namespace ejercicioTelegrama
                 }
                 else
                 {
-                    coste = 0.5 * numPalabras;
+                    coste = 2.5 + 0.5 * (numPalabras -10);
                 }
             }
             else
